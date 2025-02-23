@@ -27,7 +27,7 @@
 <h2>Install python 3.13.0 https://www.python.org</h2>
 <h2>Create a virtual environment in the project folder: python -m venv .venv</h2>
 <h2>Activate it: .venv/scripts/activate</h2>
-<h2>Now install dependencies: pip install pyautogui webbrowser psutil win32crypt opencv-python aiofiles mss numpy pyaudio aiogram pycryptodome pyinstaller</h2>
+<h2>Now install dependencies: pip install pyautogui webbrowser psutil win32crypt opencv-python aiofiles mss numpy pyaudio aiogram pycryptodome pyinstaller colorama</h2>
 <br>
 <h1>Launch: run - python bilder.py and enter everything that is asked! The finished build will be in dist</h1>
 <h2>For convenience, package bilder: pyinstaller --onefile bilder.py</h2>
@@ -45,7 +45,7 @@
 <h2>Установите python 3.13.0 https://www.python.org</h2>
 <h2>Создайте виртуальное окружение в папке проекта: python -m venv .venv</h2>
 <h2>Активируйте его: .venv/scripts/activate</h2>
-<h2>Теперь установите зависимости: pip install pyautogui webbrowser psutil win32crypt opencv-python aiofiles mss numpy pyaudio aiogram pycryptodome pyinstaller</h2>
+<h2>Теперь установите зависимости: pip install pyautogui webbrowser psutil win32crypt opencv-python aiofiles mss numpy pyaudio aiogram pycryptodome pyinstaller colorama</h2>
 <br>
 <h1>Запуск: запустите python bilder.py и вводите все что попросит!Готовый билд будет в dist</h1>
 <h2>Для удобства, запакуйте bilder: pyinstaller --onefile bilder.py</h2>
