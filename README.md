@@ -5,7 +5,6 @@
 <h3>this program, if it is packaged in an exe, is copied to another directory at startup, restarted from it and set to autoload</h3>
 <h2>Features that are currently available:</h2>
 <br>
-<br>
 <h3>-console, full copy of the console + commands(/download (name_file), /delete (name_file), /run (name_file): run file, /stop: stop console mod in bot, upload file: just send the file to the chat)</h3>
 <br>
 <h3>-screenshot</h3>
@@ -25,7 +24,6 @@
 <br>
 <h1>How to use (with builder)</h1>
 <h1>Important! Do everything in order to make it work!</h1>
-<br>
 <h2>Install python 3.13.0 https://www.python.org</h2>
 <h2>Create a virtual environment in the project folder: python -m venv .venv</h2>
 <h2>Activate it: .venv/scripts/activate</h2>
@@ -37,13 +35,13 @@
 <br>
 <h1>RU</h1>
 <h2>Автор данного кода не несет ответственности за его использование. Вы несете полную ответственность за то, где и как будете применять данный код. Код создан исключительно в образовательных целях!</h2>
+<br>
 <h3>Эта программа поможет вам установить удаленный доступ к вашему компьютеру через телеграм-бота.</h3>
 <h3>также программа, если она запакована в exe, при запуске копируется в другой каталог, перезапускается из него и ставится на автозагрузку</h3>
 <h2>Функции, которые доступны на данный момент описаны чуть выше</h2>
 <br>
 <h1>Как использовать (с билдером)</h1>
 <h1>Важно! Делайте все по порядку чтобы работало!</h1>
-<br>
 <h2>Установите python 3.13.0 https://www.python.org</h2>
 <h2>Создайте виртуальное окружение в папке проекта: python -m venv .venv</h2>
 <h2>Активируйте его: .venv/scripts/activate</h2>
