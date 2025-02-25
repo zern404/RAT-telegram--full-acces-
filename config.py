@@ -1,1 +1,1 @@
-TOKEN = 'Your token'#get in Bot father telegram
+TOKEN = '7152414229:AAFInqVxpHvYNSMPL_99AEYEobbbHANzvgA'

