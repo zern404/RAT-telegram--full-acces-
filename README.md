@@ -27,7 +27,7 @@
 <h2>Install python 3.13.0 https://www.python.org</h2>
 <h2>Create a virtual environment in the project folder: python -m venv .venv</h2>
 <h2>Activate it: .venv/scripts/activate</h2>
-<h2>Now install dependencies: pip install pyautogui psutil pywin32 opencv-python aiofiles mss numpy pyaudio aiogram pycryptodome pyinstaller colorama</h2>
+<h2>Now install dependencies: pip install pyautogui psutil pywin32 opencv-python aiofiles mss numpy pyaudio aiogram pycryptodome pyinstaller colorama mouse keyboard</h2>
 <h2>pip install --upgrade pyautogui pyscreeze pillow mouse keyboard</h2>
 <br>
 <h1>Launch: run - python bilder.py and enter everything that is asked! The finished build will be in dist</h1>
