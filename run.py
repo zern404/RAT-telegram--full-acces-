@@ -25,7 +25,6 @@ async def main_():
 
 if __name__=='__main__':
     try:
-        asyncio.run(run_as_admin())
         asyncio.run(main.main_cycle())
         asyncio.run(main_())
     except KeyboardInterrupt:

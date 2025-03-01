@@ -144,6 +144,12 @@ async def rename_process(new_name):
     try:
         proc = psutil.Process(os.getpid())
         proc.name(new_name)
+
+        """Изменить иконку процесса на стандартную Windows"""
+        hwnd = ctypes.windll.kernel32.GetConsoleWindow()
+        if hwnd:
+            hicon = ctypes.windll.user32.LoadIconW(0, 32512)  # IDI_APPLICATION (стандартная иконка Windows)
+            ctypes.windll.user32.SendMessageW(hwnd, 0x80, 0, hicon)  # WM_SETICON (маленькая иконка)
     except Exception:
         pass
 
