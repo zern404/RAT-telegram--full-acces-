@@ -1,5 +1,5 @@
 <h1>EN</h1>
-⚠️ **WARNING!**
+⚠️ <h1>WARNING!</h1>
 
 This code is **intended solely for educational** and **research purposes**.  
 By using this repository and its contents, you agree to use it at your own risk.
@@ -45,7 +45,7 @@ This code may only be used in **testing labs** for **pentesting** or with explic
 <br>
 <br>
 <h1>RU</h1>
-⚠️ **ВНИМАНИЕ!**
+⚠️ <h1>ВНИМАНИЕ!</h1>
 
 Этот код предназначен **исключительно для образовательных** и **исследовательских целей**.  
 Используя данный репозиторий и его содержимое, вы соглашаетесь использовать его на свой собственный риск.
