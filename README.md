@@ -29,7 +29,7 @@ This code may only be used in **testing labs** for **pentesting** or with explic
 <br>
 <h3>-open page on browser</h3>
 <br>
-<h3>-get info: collects information about the PC and IP, receives passwords, history and cookies from installed browsers, sends it to json</h3>
+<h3>-get info: collects information about the PC and IP sends it to json</h3>
 <br>
 <br>
 <h1>How to use (with builder)</h1>
